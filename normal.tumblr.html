@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+    <head>
+        {MobileAppHeaders}
+        <meta charset="utf-8">
+        <title>{Title}{block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}</title>
+        {block:Description}
+        <meta name="description" content="{MetaDescription}">
+        {/block:Description}
+
+        <!--
+         _   _                            _ 
+        | \ | | ___  _ __ _ __ ___   __ _| |
+        |  \| |/ _ \| '__| '_ ` _ \ / _` | |
+        | |\  | (_) | |  | | | | | | (_| | |
+        |_| \_|\___/|_|  |_| |_| |_|\__,_|_|
+
+        -------------------------------------
+        
+        A stripped down theme for building other themes or testing basic template features.
+        Includes [Noramalize.css](http://necolas.github.io/normalize.css/) for consistent rendering across browsers.
+
+        -->
+        <meta name="font:Title" content="museo-slab, sans-serif"/>
+        <meta name="font:Body" content="sans-serif"/>
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        
+        <!-- HTML5 Shiv -->
+        <!--[if lt IE 9]>
+                <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/wqcsqza/G2zmxjyyl/normalize.css">
+
+        <style>
+            body {
+                background: #E9E9E9;
+                font-family: {font:Body};
+                color: #444;
+            }
+            .wrapper {
+                width: 300px;
+                margin: 0px auto;
+                padding: 10px;
+                overflow: hidden;
+                background: #FFF;
+            }
+            @media screen and ( min-width: 540px )
+            {
+                .wrapper {
+                    width: 500px;
+                    padding: 20px;
+                }
+            }
+            @media screen and ( min-width: 848px )
+            {
+                .wrapper {
+                    width: 768px;
+                    padding: 40px;
+                }
+            }
+            header {
+                text-align: center;
+            }
+            h1, h2 { font-family: {font:Title}; }
+            a {
+                color: #34455D;
+                text-decoration: none;
+            }
+
+            /* Super basic sanity layout adjustment */
+            #search { display: inline-block; }
+            .post-footer > span { float: left; margin-right: 10px;}
+            article img { max-width: 100%; }
+
+            /* Custom CSS */
+            {CustomCSS}
+        </style>
+    </head>
+    <body data-urlencoded-name="{URLEncodedName}" class="{block:IndexPage} index-page{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}">
+        <div class="wrapper">
+        <section id="page">
+            <div class="nav-menu-wrapper">
+                <nav class="nav-menu pop">
+                    <form action="/search" method="get" id="search">
+                        <input type="text" name="q" id="q" placeholder="{lang:Search}" value="{SearchQuery}">
+                        <button type="submit">&raquo;</button>
+                    </form>
+                    <a href="/archive" class="archive arrow">{lang:Archive}</a>
+                    {block:AskEnabled}
+                        | <a href="/ask" class="ask arrow">{AskLabel}</a>
+                    {/block:AskEnabled}
+                    {block:HasPages}
+                        {block:Pages}
+                            | <a href="{URL}" class="page arrow">{Label}</a>
+                        {/block:Pages}
+                    {/block:HasPages}
+                    {block:SubmissionsEnabled}
+                            | <a href="/submit" class="submit arrow">{SubmitLabel}</a>
+                    {/block:SubmissionsEnabled}
+                </nav>
+            </div>
+            
+            <br />
+            <hr />
+            <br />
+
+            <div class="header-wrapper">
+                <header id="header">
+                    <div class="blog-title content">
+                        <a href="/" class="user-avatar"><img src="{PortraitURL-128}" alt="" class="print-only invisible"></a>
+                        <h1><a href="/">{Title}</a></h1>
+                        <span class="sub-title">
+                            {Description}
+                        </span>
+                    </div>
+                </header>
+            </div>
+            {block:SearchPage}
+                <div class="search-header content">
+                    <h2>
+                        {lang:SearchResultCount results for SearchQuery}
+                        {block:NoSearchResults}{lang:Sorry no search results found}{/block:NoSearchResults}
+                    </h2>
+                </div>
+            {/block:SearchPage}
+            <section id="posts" class="content clearfix">
+    
+                <div data-page-id="{CurrentPage}">
+                    {block:Posts}
+                            <article class="{block:Text}text {/block:Text}{block:Photoset}photoset {/block:Photoset}{block:Photo}photo {/block:Photo}{block:RebloggedFrom}reblogged {/block:RebloggedFrom}{block:Quote}quote {/block:Quote}{block:Link}link {/block:Link}{block:Chat}chat {/block:Chat}{block:Audio}audio {/block:Audio}{block:Video}video {/block:Video}{block:Answer}answer {/block:Answer}{block:Date}not-page post-{PostID}{/block:Date} {block:PermalinkPage} active exposed{/block:PermalinkPage}" {block:Date}data-post-id="post_{PostID}"{/block:Date}>
+                                <br />
+                                <div class="post-wrapper clearfix">
+                                    <section class="post">
+                                        {block:Text}
+                                            {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                            {block:Body}
+                                            <div class="body-text">
+                                                {Body}
+                                            </div>
+                                            {/block:Body}
+                                        {/block:Text}
+
+                                        {block:Photo}
+                                        <figure class="{block:HighRes}high-res{/block:HighRes}{block:Caption} with-caption{/block:Caption}" data-photo-width="{PhotoWidth-HighRes}">
+                                            <div class="photo-wrapper">
+                                                <div class="photo-wrapper-inner">
+                                                    {LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}">{LinkCloseTag}
+                                                </div>
+                                            </div>
+                                            {block:Caption}
+                                            <figcaption class="caption">
+                                                {Caption}
+                                            </figcaption>
+                                            {/block:Caption}
+                                        </figure>
+                                        {/block:Photo}
+
+                                        {block:Photoset}
+                                        <figure class="photoset {block:Caption}with-caption{/block:Caption}">
+                                            {Photoset}
+                                            {block:Caption}
+                                            <figcaption class="caption">
+                                                {Caption}
+                                            </figcaption>
+                                            {/block:Caption}
+                                        </figure>
+                                        {/block:Photoset}
+
+                                        {block:Quote}
+                                        <blockquote class="{Length}">
+                                            <p>{Quote}</p>
+                                        </blockquote>
+                                        {block:Source}
+                                        <div class="source">{Source}</div>
+                                        {/block:Source}
+                                        {/block:Quote}
+
+
+                                        {block:Link}
+                                        <div class="link-wrapper">
+                                            <h2><a {Target} href="{URL}">{Name}</a></h2>
+                                        </div>
+                                        {block:Description}
+                                        <div class="caption">
+                                            {Description}
+                                        </div>
+                                        {/block:Description}
+                                        {/block:Link}
+
+
+                                        {block:Chat}
+                                        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                            <ul class="conversation">
+                                            {block:Lines}
+                                                <li class="chat-{Alt}">{block:Label}<span class="label">{Label}</span>{/block:Label} {Line}</li>
+                                            {/block:Lines}
+                                            </ul>
+                                        {/block:Chat}
+
+
+                                        {block:Audio}
+                                        <div class="audio_container">
+                                            {block:AudioEmbed}
+                                                {AudioEmbed color="white"}
+                                            {/block:AudioEmbed}
+                                        </div>
+                                        {block:Caption}
+                                        <div class="caption">
+                                            {Caption}
+                                        </div>
+                                        {/block:Caption}
+                                        {/block:Audio}
+
+
+                                        {block:Video}                            
+                                        <figure {block:Caption}class="with-caption"{/block:Caption}>
+                                            <div class="video-wrapper">
+                                                {Video-700}
+                                            </div>
+                                            {block:Caption}
+                                            <figcaption class="caption">
+                                                {Caption}
+                                            </figcaption>
+                                            {/block:Caption}
+                                        </figure>
+                                        {/block:Video}
+
+                                        {block:Answer}
+                                        <div class="note-item note-item-asker">
+                                            <div class="text">
+                                                <p class="asker"><strong>{Asker}</strong> asked:</p>
+                                                <div class="asker-question">
+                                                    <p>{Question}</p>
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                <img class="asker-avatar" src="{AskerPortraitURL-96}" alt="">
+                                            </div>
+                                        </div>
+
+                                        {block:Answerer}
+                                        <div class="note-item note-item-answerer">
+                                            <div class="text">
+                                                <p class="answerer"><strong>{Answerer}</strong> answered:</p>
+                                                <div class="answerer-answer">
+                                                    {Answer}
+                                                </div>
+                                            </div>
+                                            <div class="avatar">
+                                                <img class="answerer-avatar" src="{AnswererPortraitURL-96}" alt="">
+                                            </div>
+                                        </div>
+                                        {/block:Answerer}
+
+                                        <div class="replies">
+                                            {Replies}
+                                        </div>
+                                        {/block:Answer}
+
+                                        {block:RebloggedFrom}
+                                        <section class="attribution-tags clearfix">
+                                            <ul>
+                                                <li>
+                                                    <a class="reblog-link" href="{ReblogParentURL}">{ReblogParentName}</a>
+                                                </li>
+                                                {block:ContentSource}
+                                                <li>
+                                                    <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
+                                                </li>
+                                                {/block:ContentSource}
+                                                {block:HasTags}
+                                                    {block:Tags}
+                                                        <li>
+                                                            <a href="{TagURL}" class="tag">{Tag}</a>
+                                                        </li>
+                                                    {/block:Tags}
+                                                {/block:HasTags} 
+                                            </ul>
+                                        </section>
+                                        {/block:RebloggedFrom}
+
+                                        {block:NotReblog}
+                                            {block:HasTags}
+                                            <section class="attribution-tags clearfix">
+                                                <ul>
+                                                    {block:ContentSource}
+                                                    <li>
+                                                        <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
+                                                    </li>
+                                                    {/block:ContentSource}
+                                                    {block:Tags}
+                                                        <li>
+                                                            <a href="{TagURL}" class="tag">{Tag}</a>
+                                                        </li>
+                                                    {/block:Tags}
+                                                </ul>
+                                            </section>
+                                            {/block:HasTags}                                
+                                        {/block:NotReblog}
+
+                                    </section>
+                                    
+                                    {block:Date}
+                                    <section class="panel">
+                                        <footer class="post-footer">
+                                            <span><a href="{Permalink}" title="{TimeAgo}">{ShortMonth} {DayOfMonth}{DayOfMonthSuffix}, {Year}</a></span>
+                                                {block:NoteCount}
+                                                <span><a href="{Permalink}#notes">{NoteCountWithLabel}</a></span>
+                                                {/block:NoteCount}
+                                                <span><a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" class="share-item facebook" target="_blank">Facebook</a></span>
+                                                <span><a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" class="share-item twitter" target="_blank">Tweet</a></span>
+                                                <span><a href="mailto:?subject={URLEncodedShareString}&amp;body={URLEncodedMailSummary}" class="share-item mail">Mail</a></span>
+                                                <span class="reblog-control">{ReblogButton size="21" color="grey"}</span>
+                                                <span class="like-control">{LikeButton size="20" color="grey"}</span>
+                                                <div style="clear: both;"></div>
+                                        </footer>
+                                    </section>
+                                    {/block:Date}
+
+                                    {block:PermalinkPage}
+
+                                        {block:PostNotes}
+                                        <section id="notes" class="notes-wrapper clearfix">
+                                            {PostNotes-64}
+                                        </section>
+                                        {/block:PostNotes}
+
+                                    {/block:PermalinkPage}
+                                </div>
+                                <br />
+                            </article>
+                    {/block:Posts}
+                </div>
+            </section>
+            <footer id="footer" class="content clearfix">
+                {block:IndexPage}
+                    {block:Pagination}
+                    <div id="pagination">
+                        {block:PreviousPage}
+                        <a href="{PreviousPage}" class="previous" data-current-page="{CurrentPage}" data-total-pages="{TotalPages}">{lang:Previous}<span class="bg"></span></a>
+                        {/block:PreviousPage}
+                        {block:NextPage}
+                        <a href="{NextPage}" class="next" data-current-page="{CurrentPage}" data-total-pages="{TotalPages}">{lang:Next}<span class="bg"></span></a>
+                        {/block:NextPage}
+                        <div class="loader"></div>
+                    </div>
+                    {/block:Pagination}
+                {/block:IndexPage}
+            </footer>
+        </section>
+        </div>
+    </body>
+</html>
